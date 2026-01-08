@@ -2,11 +2,10 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- ros2_control system -->
-  <ros2_control name="RobotSystem" type="system">
+  <ros2_control name="GazeboSystem" type="system">
 
-    <!-- Fortress / Ignition hardware plugin -->
     <hardware>
-      <plugin>z_ros2_control::GazeboSystem</plugin>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
 
     <!-- ================= LEFT FRONT WHEEL ================= -->
@@ -38,5 +37,9 @@
     </joint>
 
   </ros2_control>
-
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <parameters>$(find robot_model)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
 </robot>
